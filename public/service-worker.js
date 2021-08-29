@@ -64,6 +64,10 @@ const FILES_TO_CACHE = [
         return;
     }
   
-
+    evt.respondWith(
+      caches.match(evt.request).then((response) => {
+        return response || fetch(evt.request);
+      })
+    );
   });
   
